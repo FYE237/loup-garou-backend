@@ -21,13 +21,16 @@ const corsOptions = {
 const socket = require("socket.io")
 
 // Open Server on selected Port
-const server =     app.listen(
+const server = app.listen(
         PORT, 
         () => console.info('Server listening on port ', PORT)
     );
 
 //We create socket connection
 const io = socket(server,{
+    cors:{
+        corsOptions
+    }
 })
 
 let client = 0 , n =0
@@ -35,7 +38,7 @@ let client = 0 , n =0
 //Change this to set to the correct endpoint of the game
 var nsp = io.of("/api/login")
 
-io.use(cors(corsOptions))
+// io.use(cors(corsOptions))
 
 nsp.on('connection', (socket) => {
     client++;

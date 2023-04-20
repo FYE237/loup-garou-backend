@@ -22,6 +22,9 @@ const server =     app.listen(
 
 //We create socket connection
 const io = socket(server,{
+    cors:{
+        origin: "http://130.190.75.42",
+    }
 })
 
 let client = 0 , n =0

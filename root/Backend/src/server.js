@@ -7,7 +7,7 @@ require('mandatoryenv').load([
 ]);
 
 const { PORT } = process.env;
-const {hostname} = '130.190.21.189'
+// const {hostname} = '130.190.21.189'
 
 const app = require ("./app")
 
@@ -16,15 +16,12 @@ const socket = require("socket.io")
 
 // Open Server on selected Port
 const server =     app.listen(
-        PORT, hostname,
+        PORT, 
         () => console.info('Server listening on port ', PORT)
     );
 
 //We create socket connection
 const io = socket(server,{
-    cors:{
-        origin: "http://130.190.75.42",
-    }
 })
 
 let client = 0 , n =0

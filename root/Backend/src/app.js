@@ -17,15 +17,7 @@ const helmet = require('helmet');
 
 const logger = require('./util/logger')
 
-// // Load .env Enviroment Variables to process.env
 
-// require('mandatoryenv').load([
-//     'MONGO_URL',
-//     'PORT',
-//     'SECRET'
-// ]);
-
-// const { PORT } = process.env;
 
 
 // Instantiate an Express Application
@@ -44,6 +36,10 @@ app.use(cors());
 app.use(helmet());
 
 
+//To delete
+// Test front-end pour les sockets
+app.use('/public',express.static("./src/public"));
+
 // Swagger Documentation
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('../swagger_output.json')
@@ -60,6 +56,9 @@ app.use('*', (req, res, next) => {
 app.use('/', require('./routes/router.js'));
 
 
+
+
+
 // Handle errors
 app.use(errorHandler());
 
@@ -69,6 +68,9 @@ app.use('*', (req, res) => {
     .status(404)
     .json( {status: false, message: 'Endpoint Not Found'} );
 })
+
+
+
 
 
 module.exports = app    

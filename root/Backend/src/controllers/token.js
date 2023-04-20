@@ -56,9 +56,12 @@ module.exports = {
 
     if(!data) throw new CodeError('User not found', status.NOT_FOUND)
 
-    if (data.name!=req.params.id )
+    // let tmp = req.params.id
+    // if(tmp == null) console.log(tmp)
+
+    if ( ( req.params.id != null  &&  data.name!=tmp ) || ( !data.name && req.params.id == null) )
       // Provoque une réponse en erreur avec un code de retour 403 
-      throw {code: 403, message: 'Forbidden'}
+        throw {code: 403, message: 'Forbidden'}
     // On appelle la fonction middleware suivante que si la condition est vérifiée
     next()
   },
